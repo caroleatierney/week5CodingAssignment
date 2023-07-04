@@ -55,9 +55,12 @@ class Menu {
                     this.viewAlbum();
                     break;
                 case '3':
-                    this.deleteAlbum();
+                    this.editAlbum();
                     break;
                 case '4':
+                    this.deleteAlbum();
+                    break;
+                case '5':
                     this.viewAllAlbums();
                     break;
                 default:
@@ -74,8 +77,9 @@ class Menu {
     0) Back
     1) Add a new album
     2) View an album
-    3) Delete an album
-    4) View all albums
+    3) Edit an album name
+    4) Delete an album
+    5) View all albums
     `);
     }
 
@@ -84,7 +88,8 @@ class Menu {
         return prompt(`
     0) Back
     1) Add a new song
-    2) Delete an song
+    2) edit a song
+    3) Delete an song
     --------------------------
     ${songName}
     `);
@@ -123,8 +128,20 @@ class Menu {
                     this.createSong();
                     break;
                 case "2":
+                    this.editSong();
+                    break;
+                case "3":
                     this.deleteSong();
             }
+        }
+    }
+
+    editAlbum() {
+        let index = prompt("Enter the index number of the album you wish modify: ");
+        if (index > -1 && index < this.artistAlbums.length) {
+            let newName = prompt("Enter the new name for the album: ");
+            this.artistAlbums[index].albumName = newName;
+            console.log(this.artistAlbums);
         }
     }
 
@@ -141,6 +158,16 @@ class Menu {
         let songName = prompt("Enter the song you want to add to the album: ");
         let songTimeLength = prompt("How long does the song run for? ");
         this.selectedAlbum.addSong(new Song(songName, songTimeLength));
+    }
+
+    editSong() {
+        let index = prompt("Enter the index number of the song you wish modify: ");
+        if (index > -1 && index < this.selectedAlbum.songsOnAlbum.length) {
+            let newName = prompt("Enter new song name: ");
+            let newSongTimeLength = prompt("Enter new song name's length: ");
+            this.selectedAlbum.songsOnAlbum[index].songName = newName;
+            this.selectedAlbum.songsOnAlbum[index].songTimeLength = newSongTimeLength;
+        }
     }
 
     deleteSong() {
