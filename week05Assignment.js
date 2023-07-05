@@ -80,7 +80,7 @@ class Menu {
         alert("Goodbye!"); // when user chooses option 0, show them a goodbye message
     }
 
-    showMainMenu() { // this method will display the main menu options to the user as displayed below
+    showMainMenu() { // this method will display the main menu options to the user as displayed below and return the chosen number
         return prompt(`
     0) Back
     1) Add a new album
@@ -91,7 +91,7 @@ class Menu {
     `);
     }
 
-    showAlbumMenuOptions(albumDescription) { // this method will display the album menu options and the album description (passed in) to the user as displayed below   
+    showAlbumMenuOptions(albumDescription) { // this method will display the album menu options and the album description (passed in) to the user as displayed below and return the chosen number  
         return prompt(`
     0) Back
     1) Add a new song
@@ -110,7 +110,6 @@ class Menu {
         alert(albumsString); // display the string to the user in the song menu
     }
 
-
     createNewAlbum() {
         let albumName = prompt("Enter new album name: "); // Prompt user for new album name
         this.artistAlbums.push(new Album(albumName)); // adds new album to the end of the album array
@@ -121,11 +120,11 @@ class Menu {
     if (index > -1 && index < this.artistAlbums.length) { // make sure the number entered is a valid selection
         this.selectedAlbum = this.artistAlbums[index]; // the selected album becomes what is in the array index they selected
         let description = "Album Name: " + this.selectedAlbum.albumName + "\n"; // set description to selected albums name and add a line break
-        description += " " + this.selectedAlbum.describe() + "\n"; // add each song to the description and a line break after it
+        description += " " + this.selectedAlbum.describe() + "\n"; // execute the album describe method and add it to the description and a line break after it
 
         // build list of songs
         for (let i = 0; i < this.selectedAlbum.songsOnAlbum.length; i++) { // loop for the length of the songs array
-            description += i + ") " + this.selectedAlbum.songsOnAlbum[i].describe(); // continue adding to the description string the songs in the songs array
+            description += i + ") " + this.selectedAlbum.songsOnAlbum[i].describe(); // execute the song description method and continue adding to the description string the songs in the songs array
         }
 
         let selection = this.showAlbumMenuOptions(description); // the selection is the index returned from the songs prompt the description is passed into the method that displays the prompt for albums
