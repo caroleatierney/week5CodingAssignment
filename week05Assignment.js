@@ -28,7 +28,7 @@ class Album {
 }
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-// This is the Song class whose objects will be added to the Albums array
+// This is the Song class whose objects will be added to the Albums songsOnAlbums array
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 class Song {
@@ -105,14 +105,14 @@ class Menu {
     viewAllAlbums() {
         let albumsString = ""; // create a string to hold the list albums
         for (let i = 0; i < this.artistAlbums.length; i++) { // loop for the length of the albims array
-            albumsString += i + ') ' + this.artistAlbums[i].albumName + '\n' // in the album string, add the index and the album name
+            albumsString += i + ') ' + this.artistAlbums[i].albumName + '\n' // in the album string, add the index so the user knows what number to choose, ie. x), and the album name
         }
         alert(albumsString); // display the string to the user in the song menu
     }
 
     createNewAlbum() {
         let albumName = prompt("Enter new album name: "); // Prompt user for new album name
-        this.artistAlbums.push(new Album(albumName)); // adds new album to the end of the album array
+        this.artistAlbums.push(new Album(albumName)); // creates an instance of the class Album and adds the album to the end of the album array
     }
 
     viewAlbum() {
@@ -145,14 +145,14 @@ class Menu {
         let index = prompt("Enter the index number of the album you wish modify: "); // set index equal to what the user enters in the prompt
         if (index > -1 && index < this.artistAlbums.length) { // make sure the number entered is a valid selection
             let newName = prompt("Enter the new name for the album: "); // set newName equal to what the user inputs
-            this.artistAlbums[index].albumName = newName; // update the albumName value in the artistAlbums array
+            this.artistAlbums[index].albumName = newName; // update the albumName value in the artistAlbums array for index selected
         }
     }
 
     deleteAlbum() {
         let index = prompt("Enter the index number of the album you wish to delete: "); // set index equal to what the user enters in the prompt
         if (index > -1 && index < this.artistAlbums.length) { // make sure the number entered is a valid selection
-            this.artistAlbums.splice(index, 1); // use the arraymethod, splice to remove one element from the artistAlbums array at the index location
+            this.artistAlbums.splice(index, 1); // use the array method splice to remove one element from the artistAlbums array at the index location
         }
     }
 
@@ -179,7 +179,7 @@ class Menu {
     deleteSong() {
         let index = prompt("Enter the index number of the song you wish to delete: "); // set index equal to what the user enters in the prompt
         if (index > -1 && index < this.selectedAlbum.songsOnAlbum.length) { // make sure the number entered is a valid selection
-            this.selectedAlbum.songsOnAlbum.splice(index, 1); // use the arraymethod, splice to remove one element from the songsOnAlbum array at the index location
+            this.selectedAlbum.songsOnAlbum.splice(index, 1); // use the array method splice to remove one element from the songsOnAlbum array at the index location
         }
     }
 }
